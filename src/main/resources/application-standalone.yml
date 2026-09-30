@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: virtualthreads
+app:
+  threads:
+    type: platform
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, jfr
+  endpoint:
+    jfr:
+      enabled: true

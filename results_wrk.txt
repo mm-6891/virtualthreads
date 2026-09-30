@@ -1,0 +1,20 @@
+VIRTUAL THREADS:
+Running 1m test @ http://localhost:8080
+  2 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   782.98ms  236.40ms   1.02s    59.68%
+    Req/Sec    64.21     30.46   220.00     67.90%
+  7604 requests in 1.00m, 101.66MB read
+Requests/sec:    126.72
+Transfer/sec:      1.69MB
+
+PLATFORM THREADS
+Running 1m test @ http://localhost:8080
+  2 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   934.54ms  332.16ms   1.89s    62.50%
+    Req/Sec     6.49      4.53    29.00     88.01%
+  605 requests in 1.00m, 704.39KB read
+  Socket errors: connect 0, read 0, write 0, timeout 565
+Requests/sec:     10.08
+Transfer/sec:     11.73KB
