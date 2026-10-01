@@ -1,6 +1,8 @@
 package com.pildora.apps.virtualthreads.api;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 
 import com.pildora.apps.virtualthreads.domain.Credit;
 
@@ -13,6 +15,19 @@ import java.util.concurrent.atomic.AtomicLong;
 public class CreditController {
     private final Map<Long, Credit> credits = new ConcurrentHashMap<>();
     private final AtomicLong idGen = new AtomicLong(1);
+
+    @Value("${app.benchmark.reset-enabled:false}")
+    private boolean benchmarkResetEnabled;
+
+    @DeleteMapping("/_benchmark/reset")
+    public ResponseEntity<Void> resetCreditsForBenchmark() {
+        if (!benchmarkResetEnabled) {
+            return ResponseEntity.notFound().build();
+        }
+        credits.clear();
+        idGen.set(1);
+        return ResponseEntity.noContent().build();
+    }
 
     @PostMapping
     public Credit newCredit(@RequestBody Credit credit) {
